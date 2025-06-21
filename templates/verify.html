@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Verify Medicine Intake</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f2f5f9;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+    h1 {
+      color: #333;
+      margin-top: 20px;
+    }
+    .container {
+      padding: 20px;
+    }
+    video, canvas {
+      border: 4px solid #4CAF50;
+      border-radius: 10px;
+      margin: 10px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+    button:hover {
+      background: #45a049;
+    }
+    .voice-section {
+      margin-top: 30px;
+    }
+    .mic-icon {
+      width: 60px;
+      animation: pulse 1.5s infinite;
+    }
+    #result {
+      font-size: 18px;
+      margin-top: 15px;
+      color: #444;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.1); opacity: 0.6; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <h1>🧪 Verify Medicine Intake</h1>
+  <div class="container">
+    <!-- Webcam Stream -->
+    <video id="video" width="400" height="300" autoplay></video><br>
+    <button onclick="verifyImage()">📸 Capture & Verify</button>
+    <p id="result">Waiting for input...</p>
+    <canvas id="canvas" width="400" height="300" style="display:none;"></canvas>
+
+    <!-- Voice Recognition -->
+    <div class="voice-section">
+      <h2>🎙️ Voice Verification</h2>
+      <img src="/static/mic.gif" alt="Listening..." class="mic-icon"><br>
+      <button onclick="startVoice()">🎧 Start Listening</button>
+    </div>
+  </div>
+
+  <script>
+    // Access webcam
+    const video = document.getElementById('video');
+    navigator.mediaDevices.getUserMedia({ video: true })
+      .then(stream => { video.srcObject = stream; });
+
+    // Capture photo and send to server
+    function verifyImage() {
+      const canvas = document.getElementById('canvas');
+      const context = canvas.getContext('2d');
+      context.drawImage(video, 0, 0, canvas.width, canvas.height);
+      canvas.toBlob(blob => {
+        const formData = new FormData();
+        formData.append('image', blob, 'snapshot.jpg');
+
+        fetch('/verify_image', {
+          method: 'POST',
+          body: formData
+        })
+        .then(res => res.json())
+        .then(data => {
+          document.getElementById("result").innerText = data.message;
+        })
+        .catch(err => {
+          document.getElementById("result").innerText = "❌ Verification failed.";
+        });
+      }, 'image/jpeg');
+    }
+
+    // Trigger voice verification
+    function startVoice() {
+      document.getElementById("result").innerText = "🎤 Listening for voice...";
+      fetch('/verify_voice')
+        .then(res => res.json())
+        .then(data => {
+          document.getElementById("result").innerText = data.message;
+        })
+        .catch(err => {
+          document.getElementById("result").innerText = "❌ Voice verification failed.";
+        });
+    }
+  </script>
+</body>
+</html>

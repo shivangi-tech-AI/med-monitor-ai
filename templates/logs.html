@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head><title>Logs</title></head>
+<body>
+    <h2>Medication Logs</h2>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Medicine</th>
+            <th>Time</th>
+            <th>Mode</th>
+            <th>Status</th>
+        </tr>
+        {% for row in data %}
+        <tr>
+            <td>{{ row[0] }}</td>
+            <td>{{ row[1] }}</td>
+            <td>{{ row[2] }}</td>
+            <td>{{ row[3] }}</td>
+            <td>{{ row[4] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

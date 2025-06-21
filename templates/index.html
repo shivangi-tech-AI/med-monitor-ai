@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Medicine Monitor</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header>
+    <h1>Medicine Monitor</h1>
+  </header>
+
+  <section class="form-container">
+    <h2>Set Medicine</h2>
+    <form method="POST" action="/set">
+
+      <div class="form-row">
+        <label for="medicine">Medicine Name</label>
+        <input type="text" id="med_name" name="med_name" placeholder="Enter value" required>
+      </div>
+
+      <div class="form-row">
+        <label for="time">Time Set</label>
+        <input type="time" id="time" name="time" required>
+      </div>
+
+      <div class="form-row">
+        <label for="confirmation_mode">Confirmation Mode</label>
+        <select name="confirmation_mode" id="mode" required>
+          <option value="" disabled selected>Select an option</option>
+          <option value="WebCam">WebCam</option>
+          <option value="Voice">Voice</option>
+        </select>
+      </div>
+
+      <div class="form-row">
+        <label for="email">Weekly Report Address</label>
+        <input type="email" id="email" name="email" placeholder="Enter Email Address">
+      </div>
+
+      <button type="submit">Set Reminder</button>
+
+      <div class="form-row">
+         <a href="/history">
+        <button type="button">📜 View History Reminders</button>
+         </a>
+      </div>
+
+    </form>
+  </section>
+  <script>
+
+   setInterval(() => {
+  fetch("/pending")
+    .then(res => res.json())
+    .then(data => {
+      if (data.status === "trigger") {
+        // Redirect to image + voice check
+        window.location.href = "/verify";
+      }
+    });
+}, 60000); // 60 seconds 
+
+  </script>
+</body>
+</html>
