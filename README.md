@@ -4,7 +4,7 @@ A full stack AI/ML Web App powered healthcare project to help patients- especial
 A smart web application designed to help elderly users manage and receive reminders for their medication schedule. This app allows users to input medicine names, set reminder time, and receive timely alarty - helping improve medication adherence and overall health.
 
 Screenshots below showcase the web-based interface...
-![UI Screenshot 1](https://github.com/shivangi-tech-AI/med-monitor-ai/blob/99c5585a6e3e39eaf7407469a6acc6c29bca1db8/Screenshot%202025-07-07%20194512.png)
+![UI Screenshot 1](https://github.com/shivangi-tech-AI/med-monitor-ai/blob/a19e1fdbedf898c0977870d9f8c6c756e7e6772b/Screenshot%202025-07-07%20194513.png)
 
 Sample output: 1 demonstrating medicine not verify via **voive input**, with real-time alerts and adherence logging.
 
