@@ -6,7 +6,7 @@ A smart web application designed to help elderly users manage and receive remind
 Screenshots below showcase the web-based interface...
 ![UI Screenshot 1](https://github.com/shivangi-tech-AI/med-monitor-ai/blob/a19e1fdbedf898c0977870d9f8c6c756e7e6772b/Screenshot%202025-07-07%20194513.png)
 
-Sample output: 1 demonstrating medicine not verify via **voive input**, with real-time alerts and adherence logging.
+Sample output: 1 demonstrating medicine not verify via **voice input**, with real-time alerts and adherence logging.
 
 ![Result Screenshot](https://github.com/shivangi-tech-AI/med-monitor-ai/blob/5edb73374c0a2b44a0ed525b29a7f86b58ea07f5/Screenshot%202025-07-07%20194850.png)
 
