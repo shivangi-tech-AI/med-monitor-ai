@@ -8,5 +8,4 @@ Screenshots below showcase the web-based interface...
 
 Sample outputs demonstrating medicine verification via **voice input**, with real-time alerts and adherence logging.
 
-This show when 
-![Result Screenshot]()
+![Result Screenshot](https://github.com/shivangi-tech-AI/med-monitor-ai/blob/14c46ed2b1c69b03e33f5a3d617ad7f743768f0b/Screenshot%202025-07-07%20195935.png)
